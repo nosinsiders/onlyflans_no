@@ -38,14 +38,16 @@ def success(request):
 
 def contacto_beta(request):
   if request.method == 'POST':
-      form = ContactFormModelForm(request.POST)
+      form = ContactFormModelForm(request.POST)  ## Se crea una instancia de ContactForm con los datos enviados en la solicitud POST.
       if form.is_valid():
           # Procesar datos en form.cleaned_data
+          # Usar **form.cleaned_data en la llamada a create() desempaqueta este diccionario y pasa cada par clave-valor
           ContactForm.objects.create(**form.cleaned_data)
           return redirect('success')
+      #print("Formulario no válido. Errores:", form.errors)
   else:
-      form = ContactFormModelForm()  
-  return render(request, 'contacto_beta.html', {'form': form})
+      form = ContactFormModelForm()       # Se crea una instancia del formulario ContactForm sin datos iniciales.
+  return render(request, 'contacto_beta.html', {'form': form}) # Se crea un contexto que contiene el formulario vacío. Y renderiza
 
 def logoutyo(request):
     logout(request)

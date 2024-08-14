@@ -7,7 +7,18 @@
         <div class="col-6">
             <form action="{% url 'contacto_beta' %}" method="post">
                 {% csrf_token %}
-                {{ form }}
+                {{ form.as_p  }}  <!-- Muestra el formulario con los errores si los hay -->
+                {% if form.errors %}
+                  <div class="alert alert-danger">
+                    <strong>Hay errores en el formulario:</strong>
+                    <ul>
+                      {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors|join:", " }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+                
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>
