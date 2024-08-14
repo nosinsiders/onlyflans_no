@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %} 
+
+{% block title %}
+  Bienvenido a onlyflans
+{% endblock %}
+
+{% block content %}
+<div class="container  text-center py-5 my-5" style="background: white;"> 
+    <div class="col-8 shadow mx-auto pb-5">
+        <div class="h1 fw-semibold py-3">Login de usuario</div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Login">
+            <p>¿Olvidaste tu contraseña? <a href="{% url 'password_reset' %}">Restablécela aquí</a>.</p>
+        </form>
+
+        {% if messages %}
+            <ul class="mt-3">
+                {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
