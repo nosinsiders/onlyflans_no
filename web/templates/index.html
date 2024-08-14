@@ -1,7 +1,11 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block title %}
   Bienvenido a onlyflans
+{% endblock %}
+{% block title_header %}
+  <img src="{% static 'img/logo-only.png' %}" alt="logo">
 {% endblock %}
 
 {% block content %}

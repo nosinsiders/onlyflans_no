@@ -16,3 +16,8 @@ body {
     font-size: 3.5rem;
   }
 }
+
+.imagen-logo{
+  width: 15rem;
+  margin: 2rem 0; /**superior e inferio 16 píxeles, 2 rem equivale a 32 píxeles. lados = 0.**/
+}

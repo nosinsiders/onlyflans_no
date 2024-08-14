@@ -36,6 +36,17 @@ def contacto(request):
 def success(request):
     return render(request, 'success.html')
 
+def contacto_beta(request):
+  if request.method == 'POST':
+      form = ContactFormModelForm(request.POST)
+      if form.is_valid():
+          # Procesar datos en form.cleaned_data
+          ContactForm.objects.create(**form.cleaned_data)
+          return redirect('success')
+  else:
+      form = ContactFormModelForm()  
+  return render(request, 'contacto_beta.html', {'form': form})
+
 def logoutyo(request):
     logout(request)
     return redirect('home')
